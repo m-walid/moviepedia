@@ -1,7 +1,7 @@
 class IMDB {
   constructor() {
     this.key = "88a6cb56";
-    this.domain = "http://omdbapi.com";
+    this.domain = "https://omdbapi.com";
   }
 
   async getMovie(id) {
