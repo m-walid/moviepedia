@@ -6,20 +6,24 @@ const subBt = document.querySelector(".subs");
 
 const imdb = new IMDB();
 const ui = new UI();
-search.addEventListener("keyup", (e) => {
-  const text = e.target.value;
-  ui.clearMovie();
-  if (text !== "") {
-    imdb
-      .getMovies(text)
-      .then((movies) => {
-        ui.showMovies(movies);
-      })
-      .catch((err) => console.log(err.message));
-  } else {
+
+search.addEventListener(
+  "input",
+  debounce((e) => {
+    const text = e.target.value;
     ui.clearMovie();
-  }
-});
+    if (text !== "") {
+      imdb
+        .getMovies(text)
+        .then((movies) => {
+          ui.showMovies(movies);
+        })
+        .catch((err) => console.log(err.message));
+    } else {
+      ui.clearMovie();
+    }
+  }, 450)
+);
 
 document.querySelector(".container").addEventListener("click", (e) => {
   if (e.target.classList.contains("show-btn")) {
@@ -35,3 +39,11 @@ document.querySelector(".container").addEventListener("click", (e) => {
 });
 
 document.querySelector("nav").addEventListener("click", () => ui.clearMovie());
+
+function debounce(callback, delay) {
+  let interval;
+  return function (e) {
+    clearInterval(interval);
+    interval = setTimeout(() => callback(e), delay);
+  };
+}

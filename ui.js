@@ -17,7 +17,7 @@ class UI {
         <div class="info">
           <div class="type rw"><span>${movie.Type}</span></div>
           <div class="rating rw">
-            <img src="logo-imdb.svg" alt="" srcset="" /><span>${movie.imdbRating}</span>
+            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank"><img src="logo-imdb.svg" alt="" srcset="" /> </a><span>${movie.imdbRating}</span>
             <div class="votes rw">Votes: <span>${movie.imdbVotes}</span></div>
           </div>
 
@@ -39,7 +39,7 @@ class UI {
         </div>
       </div>
       <div class="download">
-        <a href="https://rarbgaccess.org/torrents.php?imdb=${movie.imdbID}" target="_blank" class="rarbg">rarbg</a>
+        <a href="https://rarbgaccess.org/torrents.php?imdb=${movie.imdbID}&order=seeders&by=DESC" target="_blank" class="rarbg">rarbg</a>
         <a href="https://subscene.com/subtitles/searchbytitle?query=${movie.Title}" target="_blank" class="subs">subscene</a>
       </div>`;
     setTimeout(
