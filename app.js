@@ -12,13 +12,18 @@ search.addEventListener(
   debounce((e) => {
     const text = e.target.value;
     ui.clearMovie();
+    ui.showLoader();
     if (text !== "") {
       imdb
         .getMovies(text)
         .then((movies) => {
+          ui.hideLoader()
           ui.showMovies(movies);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) =>{
+          ui.hideLoader();
+          ui.showErr(err.message)
+        } );
     } else {
       ui.clearMovie();
     }
@@ -32,9 +37,10 @@ document.querySelector(".container").addEventListener("click", (e) => {
     imdb
       .getMovie(id)
       .then((movie) => {
+        ui.clearMovie();
         ui.showMovie(movie);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => ui.showErr(err.message));
   }
 });
 

@@ -20,7 +20,7 @@ class IMDB {
     );
     const exactData = await exactSearch.json();
     if (searchData.Response === "False" && exactData.Response === "False") {
-      throw new Error("not found");
+      throw new Error("No results !");
     } else {
       let movies = [];
       if (searchData.Response !== "False") movies = searchData.Search;

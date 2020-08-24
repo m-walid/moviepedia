@@ -1,9 +1,10 @@
 class UI {
   constructor() {
     this.container = document.querySelector(".container");
+    this.err = document.querySelector(".err");
   }
   showMovie(movie) {
-    this.container.innerHTML = `
+    this.container.innerHTML+= `
         <div class="movie">
         <div>
           <div class="title">${movie.Title} (<span class="year">${movie.Year}</span>)</div>
@@ -49,7 +50,7 @@ class UI {
   }
 
   clearMovie() {
-    this.container.innerHTML = "";
+    this.container.innerHTML = '<div class="loader"></div>';
   }
 
   showMovies(movies) {
@@ -82,5 +83,19 @@ class UI {
         }),
       1
     );
+  }
+
+  showLoader() {
+    document.querySelector(".loader").style.display = "block";
+  }
+
+  hideLoader() {
+    document.querySelector(".loader").style.display = "none";
+  }
+
+  showErr(msg) {
+    this.err.textContent = msg;
+    this.err.style.display = "block";
+    setTimeout(() => (this.err.style.display = "none"), 2000);
   }
 }

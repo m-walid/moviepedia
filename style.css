@@ -31,12 +31,20 @@ nav {
   /* border-radius: 5px; */
   /* box-shadow: 0 10px 5px rgba(28, 29, 28, 0.233); */
   border: 0;
+  transition: box-shadow 0.1s linear;
 }
 .search-bar::placeholder {
   color: rgba(255, 255, 255, 0.74);
 }
+
+.search-bar:focus{
+  /* border: 1px solid #8f1111; */
+  outline: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.534);
+}
 .container {
   margin: 3rem 8rem;
+  height: 100%;
 }
 .movie {
   display: flex;
@@ -188,6 +196,34 @@ nav {
   /* transform: scale(0); */
   transition: all 0.1s ease-in;
 }
+
+
+.loader{
+  display: none;
+  margin:0 auto;
+  margin-top: 10rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border:7px solid rgba(0, 0, 0, 0.596);
+  border-top: 7px solid #e53232;
+  animation: load 1.2s linear infinite;
+  
+}
+
+.err{
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+@keyframes load{
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
 
 @media only screen and (max-width: 1126px) {
   :root {
